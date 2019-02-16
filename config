@@ -104,11 +104,14 @@ floating_maximum_size 800 x 500
 # focus the child container
 #bindsym $mod+d focus child
 #Custom assignment of workspaces
-assign [class="Transmission"] 4
+assign [class="Transmission"] 2
+for_window [class="Transmission"] focus
+assign [class="^Thunar$"] File-Manager
+for_window [class="^Thunar$"] focus
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
+bindsym $mod+3 workspace File-Manager
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
@@ -120,7 +123,7 @@ bindsym $mod+0 workspace 10
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+3 move container to File-Manager
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
@@ -195,7 +198,7 @@ exec --no-startup-id synclient NaturalScrollling=1 VertScrollDelta=-113
 
 #Rofi config
 
-bindsym $mod+d exec --no-startup-id dmenu_run -l 3
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'Overpass Mono:pixelsize=15' -l 3 -nf '#707880' -sf '#cc6666' -nb '#1d1f21' -sb '#1d1f21'
 
 #Volume config
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+ ; exec --no-startup-id pkill -RTMIN+10 i3blocks

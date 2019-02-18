@@ -20,7 +20,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:System San Francisco Display 10
+font pango: SauceCodePro Nerd Font Black 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -102,7 +102,6 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 #Custom assignment of workspaces
-#assign [class="Transmission"] 4
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -114,7 +113,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-
+assign [class="thunar"] 3
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -162,7 +161,19 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+# RGB
+set $cyan0	 #4ec2f7
+set $silver0 #e4e4e4
+set $orange  #ff8700
 
+# RGBA
+set $cyan	   #4ec2f799
+set $acqua	 #00708999
+set $wine 	 #72003e99
+set $magenta #af005f99
+set $silver  #e4e4e499
+set $toxic   #8EC00099
+set $elegant #00002c00
 set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
@@ -177,22 +188,26 @@ client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 hide_edge_borders both
  bar {
-        status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	font pango:System San Francisco Display 10		
+	
+status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	i3bar_command i3bar -t
+	font pango:SauceCodePro Nerd Font Black 10		
 	colors {
-		background $bg-color
-	    	separator #757575
+		background $elegant
+	    	separator $elegant
 		#                  border             background         text
-		focused_workspace  $bg-color          $bg-color          $text-color
-		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+		focused_workspace  $elegant          $elegant          $text-color
+		inactive_workspace $elegant $elegant   $inactive-text-color
+		urgent_workspace   $acqua   $acqua   $text-color
 	}
 }
 #Scroll config
 exec --no-startup-id synclient NaturalScrollling=1 VertScrollDelta=-113
+gaps inner 10
+gaps outer 0
+new_window pixel 0
 
-#Rofi config
-
+#d-menu config
 bindsym $mod+d exec --no-startup-id dmenu_run -l 3
 
 #Volume config
@@ -211,7 +226,7 @@ exec_always --no-startup-id feh --bg-scale ~/Downloads/1.jpg
 bindsym $mod+w exec --no-startup-id google-chrome
 bindsym $mod+t exec --no-startup-id subl
 bindsym $alt+F4 kill
-
+bindsym $alt+t exec --no-startup-id thunar --class=thunar
 #Touchpad config
 exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
 exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113

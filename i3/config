@@ -5,9 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 #lock screen config
-exec_always --no-startup-id xautolock -detectsleep -time 2 -locker "/usr/local/bin/lock_and_blur.sh" \
-  -notify 90 \
-  -notifier "notify-send -u critical -t 10000 -- 'locking screen in 30 seconds'"
+exec_always --no-startup-id xautolock -n -detectsleep -time 2 -locker "/usr/local/bin/lock_and_blur.sh" 
 bindsym $mod+Delete exec --no-startup-id /usr/local/bin/lock_and_blur.sh
 
 #lock on suspend
@@ -44,7 +42,7 @@ bindsym $mod+Shift+q kill
 
 #Compton animation
  
-exec_always --no-startup-id compton -f
+exec_always --no-startup-id compton -f --config ~/.config/compton.conf
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -182,8 +180,8 @@ set $urgent-bg-color     #E53935
 
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #00ff00
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
+client.focused          $bg-color           $bg-color          $text-color          #00ff00  #c469f1
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00 
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 hide_edge_borders both
@@ -205,7 +203,7 @@ status_command i3blocks -c ~/.config/i3/i3blocks.conf
 exec --no-startup-id synclient NaturalScrollling=1 VertScrollDelta=-113
 gaps inner 10
 gaps outer 0
-new_window pixel 0
+new_window pixel 2
 
 #d-menu config
 bindsym $mod+d exec --no-startup-id dmenu_run -l 3
@@ -230,4 +228,5 @@ bindsym $alt+t exec --no-startup-id thunar --class=thunar
 #Touchpad config
 exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
 exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113
-
+#floating max size
+floating_maximum_size 650 x 350

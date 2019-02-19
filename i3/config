@@ -204,6 +204,7 @@ exec --no-startup-id synclient NaturalScrollling=1 VertScrollDelta=-113
 gaps inner 10
 gaps outer 0
 new_window pixel 2
+for_window [class="^.*"] border pixel 2
 
 #d-menu config
 bindsym $mod+d exec --no-startup-id dmenu_run -l 3
@@ -230,3 +231,6 @@ exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
 exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113
 #floating max size
 floating_maximum_size 650 x 350
+#redshift config
+exec_always --no-startup-id redshift-gtk
+#for_window [class="^.*"] border pixel 0

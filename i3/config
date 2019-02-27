@@ -181,8 +181,8 @@ set $urgent-bg-color     #E53935
 # window colors
 #                       border              background         text                 indicator
 client.focused          $bg-color           $bg-color          $text-color          #c469f1  #c469f1
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #c469f1 
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #c469f1
+client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color 
+client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #c469f1
 hide_edge_borders both
  bar {
@@ -224,6 +224,7 @@ exec_always --no-startup-id feh --bg-scale ~/Downloads/1.jpg
 #Custom Shortcuts
 bindsym $mod+w exec --no-startup-id google-chrome
 bindsym $mod+t exec --no-startup-id subl
+bindsym $mod+p exec --no-startup-id ~/Downloads/Postman/Postman
 bindsym $alt+F4 kill
 bindsym $alt+t exec --no-startup-id thunar --class=thunar
 #Touchpad config
@@ -232,5 +233,5 @@ exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -1
 #floating max size
 floating_maximum_size 650 x 350
 #redshift config
-exec_always --no-startup-id redshift-gtk
+exec --no-startup-id redshift-gtk
 #for_window [class="^.*"] border pixel 0

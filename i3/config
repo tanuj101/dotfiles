@@ -5,7 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 #lock screen config
-exec_always --no-startup-id xautolock -n -detectsleep -time 2 -locker "/usr/local/bin/lock_and_blur.sh" 
+exec_always --no-startup-id xautolock -detectsleep -time 4 -locker "/usr/local/bin/lock_and_blur.sh" 
 bindsym $mod+Delete exec --no-startup-id /usr/local/bin/lock_and_blur.sh
 
 #lock on suspend
@@ -42,7 +42,7 @@ bindsym $mod+Shift+q kill
 
 #Compton animation
  
-exec_always --no-startup-id compton -f --config ~/.config/compton.conf
+exec_always --no-startup-id compton -f
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -112,6 +112,8 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 assign [class="thunar"] 3
+assign [class="chrome"] 1
+assign [class="Code"] 2
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -222,8 +224,9 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 exec_always --no-startup-id feh --bg-scale ~/Downloads/1.jpg
 
 #Custom Shortcuts
-bindsym $mod+w exec --no-startup-id google-chrome
+bindsym $mod+w exec --no-startup-id google-chrome --class=chrome
 bindsym $mod+t exec --no-startup-id subl
+bindsym $mod+c exec --no-startup-id code --class=Code
 bindsym $mod+p exec --no-startup-id ~/Downloads/Postman/Postman
 bindsym $alt+F4 kill
 bindsym $alt+t exec --no-startup-id thunar --class=thunar
@@ -231,7 +234,7 @@ bindsym $alt+t exec --no-startup-id thunar --class=thunar
 exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
 exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113
 #floating max size
-floating_maximum_size 650 x 350
+floating_maximum_size 650 x 600
 #redshift config
 exec --no-startup-id redshift-gtk
 #for_window [class="^.*"] border pixel 0

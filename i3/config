@@ -5,7 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 #lock screen config
-exec_always --no-startup-id xautolock -detectsleep -time 4 -locker "/usr/local/bin/lock_and_blur.sh" 
+exec_always --no-startup-id xautolock -nofork -detectsleep -time 4 -locker "/usr/local/bin/lock_and_blur.sh" 
 bindsym $mod+Delete exec --no-startup-id /usr/local/bin/lock_and_blur.sh
 
 #lock on suspend
@@ -40,8 +40,24 @@ bindsym $mod+Return exec --no-startup-id st
 # kill focused window
 bindsym $mod+Shift+q kill
 
-#Compton animation
- 
+#kill plasma
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable
+for_window [class="krunner"] floating enable
+for_window [class="Kmix"] floating enable
+for_window [class="Klipper"] floating enable
+for_window [class="Plasmoidviewer"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_role="About"] floating enable 
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+#Compton animation 
 exec_always --no-startup-id compton -f
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -235,6 +251,8 @@ exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1
 exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -113
 #floating max size
 floating_maximum_size 650 x 600
+#kde-connect config
+exec --no-startup-id kdeconnect-indicator
 #redshift config
 exec --no-startup-id redshift-gtk
 #for_window [class="^.*"] border pixel 0

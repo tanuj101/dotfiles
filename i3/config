@@ -252,6 +252,7 @@ exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -1
 #floating max size
 floating_maximum_size 650 x 600
 #kde-connect config
+exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 exec --no-startup-id kdeconnect-indicator
 #redshift config
 exec --no-startup-id redshift-gtk

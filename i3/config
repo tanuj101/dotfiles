@@ -245,6 +245,7 @@ bindsym $mod+t exec --no-startup-id subl
 bindsym $mod+c exec --no-startup-id code --class=Code
 bindsym $mod+p exec --no-startup-id ~/Downloads/Postman/Postman
 bindsym $alt+F4 kill
+bindsym $mod+g exec --no-startup-id ~/Downloads/genymotion/genymotion
 bindsym $alt+t exec --no-startup-id thunar --class=thunar
 #Touchpad config
 exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1

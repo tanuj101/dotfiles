@@ -66,12 +66,15 @@ modules-center = date
 ;available modules filesystem memory temperature
 modules-right = volume backlight battery wlan powermenu
 
+pseudo-transparency = false
+
 ;tray-position = right
+;tray-reparent =true
 ;tray-padding = 2
 ;tray-transparent = true
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
+;wm-restack = i3
 ;wm-restack = i3
 
 ;override-redirect = true

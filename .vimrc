@@ -45,6 +45,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'morhetz/gruvbox'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'pangloss/vim-javascript'
+let g:javascript_plugin_flow = 1
+Plugin 'scrooloose/nerdtree'
+" Nerd tree toggle
+map <C-n> :NERDTreeToggle<CR>
 call vundle#end()            " required
 filetype plugin indent on    " required
 colorscheme gruvbox

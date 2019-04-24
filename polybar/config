@@ -1,0 +1,300 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[settings]
+; Throttle settings
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+
+; Compositing operators
+compositing-background = over
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+[colors]
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+background =  #282828
+foreground = #ebdbb2
+foreground-alt =#ebdbb2
+primary = #cc241d
+secondary = #98971a
+;alert = #bd2c40
+pseudo-transparency = false
+
+[bar/top]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+border-size = 0
+border-top-size = 0
+border-left-size = 0
+border-right-size = 0
+border-bottom-size = 0
+height = 27
+offset-x = 
+;offset-y = 0
+radius = 0
+;fixed-center = false
+background = ${colors.background}
+foreground = ${colors.foreground}
+dpi = 90
+line-size = 2
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 2
+module-margin-right = 0
+
+font-0 = "Ubuntu Condensed:style=Regular:pixelsize=11;3"
+font-1 = Font Awesome 5 Free:pixelsize=11;3
+font-2 = "feather:style=Regular:pixelsize=11;3"
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=11;3"
+font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=11;3"
+font-5 = "Font Awesome 5 Brands:pixelsize=11;3"
+
+modules-left = i3
+modules-center = date
+;available modules filesystem memory temperature
+modules-right = volume backlight battery wlan powermenu
+
+;tray-position = right
+;tray-padding = 2
+;tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+
+label-mounted = /
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+fuzzy-match = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.foreground}
+label-focused-padding = 4
+label-focused-underline = ${colors.foreground-alt}
+
+label-unfocused = %icon%
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = 4
+label-unfocused-underline = ${colors.background}
+
+label-urgent = %icon%
+label-urgent-background = ${colors.background}
+label-urgent-foreground = ${colors.foreground-alt}
+label-urgent-padding = 4
+label-urgent-underline = ${colors.background}
+
+label-visible = %icon%
+label-visible-background = ${colors.background}
+label-visible-foreground = ${colors.foreground}
+label-visible-padding = 4
+label-visible-underline = ${colors.background}
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-default = 
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #4bffdc
+label = %percentage_used%%
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <label>
+format-padding = 4
+label = %percentage%%
+
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 1.0
+
+format-connected-padding = 4
+format-disconnected-padding = 4
+
+format-connected =   <label-connected>
+label-connected ="%essid%"
+unknown-as-up = true
+
+format-disconnected = <label-disconnected>
+label-disconnected = 
+
+format-packetloss = <animation-packetloss> <label-connected>
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = ⚠
+animation-packetloss-1-foreground = #000000
+;Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%A %d"
+date-alt = "%A, %B %d"
+
+time = "    %I : %M %p"
+time-alt = "    %I : %M %p"
+
+label = %date% %time%
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume>  <label-volume>
+format-volume-padding = 4
+format-muted-padding = 4
+
+label-volume = "%percentage%"
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+label-volume-foreground = ${colors.foreground}
+
+format-muted-prefix = 
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = 
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 98
+poll-interval = 5
+
+format-charging-padding = 4
+format-discharging-padding = 4
+format-full-padding = 4
+
+format-charging =  <label-charging>
+format-discharging =  <label-discharging>
+label-full = %percentage%%
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+format-spacing = 4
+format-padding = 4
+
+label-open = 
+label-close = "cancel"
+label-close-foreground = ${colors.foreground-alt}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = "reboot"
+menu-0-0-exec = menu-open-1
+menu-0-1 = "power off"
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = "cancel"
+menu-1-0-exec = menu-open-0
+menu-1-1 = "reboot"
+menu-1-1-exec = systemctl reboot
+
+menu-2-0 = "power off"
+menu-2-0-exec = poweroff
+menu-2-1 = "cancel"
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
+

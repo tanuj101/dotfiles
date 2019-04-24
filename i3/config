@@ -5,7 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 #lock screen config
-exec_always --no-startup-id xautolock -nofork -detectsleep -time 4 -locker "/usr/local/bin/lock_and_blur.sh" 
+exec_always --no-startup-id xautolock -nofork -detectsleep -time 2 -locker "/usr/local/bin/lock_and_blur.sh" 
 bindsym $mod+Delete exec --no-startup-id /usr/local/bin/lock_and_blur.sh
 
 #lock on suspend
@@ -40,30 +40,12 @@ bindsym $mod+Return exec --no-startup-id st
 # kill focused window
 bindsym $mod+Shift+q kill
 
-#kill plasma
-exec --no-startup-id wmctrl -c Plasma
-for_window [title="Desktop — Plasma"] kill; floating enable; border none
-for_window [class="plasmashell"] floating enable
-for_window [class="Plasma"] floating enable
-for_window [class="krunner"] floating enable
-for_window [class="Kmix"] floating enable
-for_window [class="Klipper"] floating enable
-for_window [class="Plasmoidviewer"] floating enable
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_role="About"] floating enable 
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-
 #Compton animation 
 exec_always --no-startup-id compton -f
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #Screenshot
 bindsym Print exec --no-startup-id  scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/' | notify-send "Screenshot taken"
 # change focus
@@ -127,7 +109,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-assign [class="thunar"] 3
+assign [class="thunar"] 4
 assign [class="chrome"] 1
 assign [class="Code"] 2
 # move focused container to workspace
@@ -147,7 +129,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'End session?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -195,28 +177,35 @@ set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
-
+set $yellow_b #fabd2f
+set $black_b #928374
+set $red_b  #fb4934
 # window colors
 #                       border              background         text                 indicator
-client.focused          $bg-color           $bg-color          $text-color          #c469f1  #c469f1
-client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color 
-client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color
-client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #c469f1
+client.focused          $yellow_b         $yellow_b          $yellow_b         $yellow_b
+#client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color $inactive-bg-color 
+client.focused_inactive $black_b            $black_b            $black_b                $black_b
+client.urgent           $yellow_b               $yellow_b       $yellow_b               $yellow_b 
 hide_edge_borders both
- bar {
-	
-status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	i3bar_command i3bar -t
-	font pango:SauceCodePro Nerd Font Black 10		
-	colors {
-		background $elegant
-	    	separator $elegant
-		#                  border             background         text
-		focused_workspace  $elegant          $elegant          $text-color
-		inactive_workspace $elegant $elegant   $inactive-text-color
-		urgent_workspace   $acqua   $acqua   $text-color
-	}
-}
+
+#POLYBAR CONFIG
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+#bar {
+#	
+#status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#	i3bar_command i3bar -t
+#	font pango:SauceCodePro Nerd Font Black 10		
+#	colors {
+#		background $elegant
+#	    	separator $elegant
+#		#                  border             background         text
+#		focused_workspace  $elegant          $elegant          $text-color
+#		inactive_workspace $elegant $elegant   $inactive-text-color
+#		urgent_workspace   $acqua   $acqua   $text-color
+#	}
+#}
+
 #Scroll config
 exec --no-startup-id synclient NaturalScrollling=1 VertScrollDelta=-113
 gaps inner 10
@@ -225,7 +214,10 @@ new_window pixel 2
 for_window [class="^.*"] border pixel 2
 
 #d-menu config
-bindsym $mod+d exec --no-startup-id dmenu_run -l 3
+#bindsym $mod+d exec --no-startup-id dmenu_run -l 3
+
+#rofi
+bindsym $mod+d exec rofi -show run
 
 #Volume config
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+ ; exec --no-startup-id pkill -RTMIN+10 i3blocks
@@ -237,7 +229,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 
 
 #Wallpaper confg
-exec_always --no-startup-id feh --bg-scale ~/Downloads/1.jpg
+exec_always --no-startup-id feh --bg-scale ~/1.png
 
 #Custom Shortcuts
 bindsym $mod+w exec --no-startup-id google-chrome --class=chrome
@@ -245,7 +237,6 @@ bindsym $mod+t exec --no-startup-id subl
 bindsym $mod+c exec --no-startup-id code --class=Code
 bindsym $mod+p exec --no-startup-id ~/Downloads/Postman/Postman
 bindsym $alt+F4 kill
-bindsym $mod+g exec --no-startup-id ~/Downloads/genymotion/genymotion
 bindsym $alt+t exec --no-startup-id thunar --class=thunar
 #Touchpad config
 exec --no-startup-id xinput --set-prop 10 "Synaptics Two-Finger Scrolling" 1 1

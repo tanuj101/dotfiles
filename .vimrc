@@ -40,17 +40,27 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
+map <C-p> :FZF<CR>
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'morhetz/gruvbox'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mattn/emmet-vim'
 let g:javascript_plugin_flow = 1
+Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
 " Nerd tree toggle
-map <C-n> :NERDTreeToggle<CR>
+map <C-o> :NERDTreeToggle<CR>
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_leader_key=','
 call vundle#end()            " required
 filetype plugin indent on    " required
 colorscheme gruvbox
 set background=dark
+set rtp+=~/.fzf
+set mouse=a
+set ttymouse=xterm2
+set rtp+=~/.vim/bundle/vundle.vim

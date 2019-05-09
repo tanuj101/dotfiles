@@ -5,7 +5,7 @@
 # this file and re-run i3-config-wizard(1).
 #
 #lock screen config
-exec_always --no-startup-id xautolock -nofork -detectsleep -time 2 -locker "/usr/local/bin/lock_and_blur.sh" 
+exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "/usr/local/bin/lock_and_blur.sh" 
 bindsym $mod+Delete exec --no-startup-id /usr/local/bin/lock_and_blur.sh
 
 #lock on suspend
@@ -112,6 +112,7 @@ bindsym $mod+0 workspace 10
 assign [class="thunar"] 4
 assign [class="chrome"] 1
 assign [class="Code"] 2
+assign [class="zathura"] 2
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
@@ -208,8 +209,8 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 #Scroll config
 exec --no-startup-id synclient NaturalScrollling=1 VertScrollDelta=-113
-gaps inner 10
-gaps outer 0
+gaps inner 8
+#gaps outer 8
 new_window pixel 2
 for_window [class="^.*"] border pixel 2
 
@@ -235,7 +236,8 @@ exec_always --no-startup-id feh --bg-scale ~/1.png
 bindsym $mod+w exec --no-startup-id google-chrome --class=chrome
 bindsym $mod+t exec --no-startup-id subl
 bindsym $mod+c exec --no-startup-id code --class=Code
-bindsym $mod+p exec --no-startup-id ~/Downloads/Postman/Postman
+
+#bindsym $mod+p exec --no-startup-id ~/Downloads/Postman/Postman
 bindsym $alt+F4 kill
 bindsym $alt+t exec --no-startup-id thunar --class=thunar
 #Touchpad config
@@ -244,8 +246,6 @@ exec --no-startup-id xinput --set-prop 10 "Synaptics Scrolling Distance" -113 -1
 #floating max size
 floating_maximum_size 650 x 600
 #kde-connect config
-exec --no-startup-id /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
-exec --no-startup-id kdeconnect-indicator
 #redshift config
 exec --no-startup-id redshift-gtk
 #for_window [class="^.*"] border pixel 0

@@ -1,0 +1,14 @@
+[database]
+path=/home/tanuj/.local/share/mail
+[user]
+name=Tanuj Nagpal
+primary_email=tanujnagpal999@gmail.com
+[new]
+tags=unread;inbox;
+ignore=
+[search]
+exclude_tags=deleted;spam;
+[maildir]
+synchronize_flags=true
+[crypto]
+gpg_path=gpg

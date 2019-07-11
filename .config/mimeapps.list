@@ -1,0 +1,30 @@
+[Default Applications]
+x-scheme-handler/magnet=torrent.desktop;
+x-scheme-handler/mailto=mail.desktop;
+text/plain=text.desktop;
+text/x-shellscript=text.desktop;
+application/pdf=pdf.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+application/rss+xml=rss.desktop
+
+[Added Associations]
+video/x-matroska=mpv.desktop;
+video/mp4=mpv.desktop;
+application/vnd.oasis.opendocument.text=libreoffice-writer.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
+text/x-microdvd=text.desktop;
+application/javascript=vim.desktop;code-oss.desktop;text.desktop;
+video/x-msvideo=mpv.desktop;
+image/png=img.desktop;
+video/webm=mpv.desktop;
+image/jpeg=img.desktop;
+application/xml=google-chrome.desktop;
+audio/mp4=mpv.desktop;
+text/x-maven+xml=google-chrome.desktop;
+application/pdf=pdf.desktop;
+text/plain=text.desktop;
+text/x-csrc=vim.desktop;
+audio/x-opus+ogg=mpv.desktop;
+audio/mpeg=mpv.desktop;

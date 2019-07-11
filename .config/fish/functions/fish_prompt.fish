@@ -1,0 +1,1 @@
+/home/tanuj/.local/share/omf/themes/beloglazov/fish_prompt.fish

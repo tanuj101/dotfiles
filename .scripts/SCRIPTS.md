@@ -12,7 +12,7 @@ export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH"
 
 For modules used in i3blocks.
 
-[](-) `[battery](battery)` -- i3blocks module. Shows available power remaining with icon indicating battery status. Colors indicate different levels of charge.
+[]([[-]]) `[battery](battery)` -- i3blocks module. Shows available power remaining with icon indicating battery status. Colors indicate different levels of charge.
 - `clock` -- Shows time and date. If clicked, brings up calender or coming calcuse events.
 - `cpu` -- Shows CPU temperature. If clicked, shows most processor-intensive processes.
 - `help` -- Module which appears as a question mark. Brings up readme if clicked.

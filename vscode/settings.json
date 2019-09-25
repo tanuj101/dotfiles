@@ -1,0 +1,69 @@
+{
+    "window.zoomLevel": 0,
+    "editor.fontSize": 16,
+    "files.autoSave": "afterDelay",
+    "editor.wordWrap": "on",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "editor.minimap.enabled": false,
+    "breadcrumbs.enabled": false,
+    "editor.renderControlCharacters": false,
+    "editor.renderWhitespace": "none",
+    "explorer.confirmDelete": false,
+    "[c]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/env": true,
+        "**/vendor": true,
+        "**/venv": true,
+        "**/.DS_Store": true,
+        "**/.vscode": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/node_modules": true,
+        "venv": true,
+        "*.sublime-*": true,
+        "env*": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/env": true,
+        "**/venv": true
+    },
+    "editor.formatOnSave": true,
+    "sync.gist": "56191e3f84de438dcff028c2b2a4b2f66e342001",
+    "terminal.integrated.rendererType": "dom",
+    "editor.fontWeight": "bold",
+    "git.enabled": false,
+    "editor.formatOnPaste": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "files.autoSaveDelay": 5000,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/env/**": true,
+        "**/venv/**": true,
+        "env-*": true
+    },
+    "workbench.colorTheme": "Dracula Soft"
+}

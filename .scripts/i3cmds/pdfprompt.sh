@@ -1,9 +1,6 @@
 #!/bin/sh
-
-#dmenu prompt to open pdfs from sem4 folder
-chosen="$(ls ~/sem4/ | dmenu -i -p "Open which pdf?")"
-echo $chosen
+#Ask for PDF Name
+chosen="$(ls ~/sem5/ | dmenu -i -p "Open which pdf?")"
 if [ "$chosen"  ]; then
-  echo $chosen
-  (zathura ~/sem4/$chosen)
+  zathura ~/sem5/"$chosen"
 fi

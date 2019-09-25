@@ -51,18 +51,18 @@ exec_always --no-startup-id podentr
 exec_always --no-startup-id dunst
 bar {
 	font pango:mono 10
-	status_command i3blocks
+	status_command i3status
 	position top
 	mode dock
 	modifier None
 	 colors
     {
-        background #33393b
+        background #2B2B2B
         statusline #ffffff
         separator #ffffff
 
-        focused_workspace #33393b #33393b #ffffff
-        inactive_workspace #33393b #33393b #808080
+        focused_workspace #2B2B2B #2B2B2B  #ffffff
+        inactive_workspace #2B2B2B  #2B2B2B #808080
         urgent_workspace #aa0000 #990000 #ffffff
     }
 }
@@ -79,8 +79,9 @@ bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
 
 # bindsym $mod+BackSpace
 bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Reboot computer?" "$reboot"
+exec --no-startup-id ~/mkdbus.sh
 
-bindsym $mod+grave		exec --no-startup-id dmenuunicode
+#bindsym $mod+grave		exec --no-startup-id dmenuunicode
 ##bindsym $mod+asciitilde
 
 #STOP/HIDE EVERYTHING:
@@ -359,8 +360,8 @@ bindsym XF86Search		exec $BROWSER https://duckduckgo.com
 ##bindsym XF86Finance		exec
 ##bindsym XF86Game		exec
 bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec --no-startup-id light -U 10
-bindsym XF86MonBrightnessUp	exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown	exec --no-startup-id  light -U 10
+bindsym XF86MonBrightnessUp	exec --no-startup-id  light -A 10
 bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
 bindsym XF86Display		exec --no-startup-id displayselect
 #bindsym XF86KbdLightOnOff	exec
@@ -374,7 +375,8 @@ bindsym XF86Documents		exec $term -e $FILE ~/Documents
 ##bindsym XF86Bluetooth		exec
 bindsym XF86WLAN		exec $netrefresh
 #exec_always --no-startup-id notify-send -i ~/.scripts/larbs.png 'Welcome to LARBS:' 'Press Super+F1 for the manual.' -t 10000
-exec --no-startup-id redshift
+exec --no-startup-id redshift-gtk
+exec_always --no-startup-id ~/.bash_profile
 client.focused_inactive #000000 #000000 #000000 #000000
 client.focused #000 #000 #000 #ffffff
 client.unfocused        #000000 #000000 #000000 #000000

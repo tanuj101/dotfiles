@@ -39,7 +39,7 @@ exec --no-startup-id setbg
 # Starts dunst for notifications:
 #exec --no-startup-id dunst
 # Composite manager:
-exec --no-startup-id xcompmgr
+#exec --no-startup-id xcompmgr
 # Runs the key remapping scripts
 exec --no-startup-id remaps
 # Unclutter makes the mouse invisible after a brief period
@@ -51,7 +51,8 @@ exec_always --no-startup-id podentr
 exec_always --no-startup-id dunst
 bar {
 	font pango:mono 10
-	status_command i3status
+    status_command i3status
+#status_command ~/bumblebee-status/bumblebee-status -m cpu memory battery time -p time.format="%H:%M" -t solarized
 	position top
 	mode dock
 	modifier None
@@ -70,6 +71,7 @@ floating_modifier $mod
 # #---Basic Bindings---# #
 bindsym $mod+Return 		exec $term
 bindsym $mod+Shift+Return	exec --no-startup-id samedir
+bindsym Mod3+Return exec $term
 
 bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+space		focus mode_toggle
@@ -155,7 +157,7 @@ bindsym $mod+Shift+l		move right 30
 bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 
-bindsym $mod+x			exec --no-startup-id mpc pause; exec --no-startup-id pauseallmpv ; exec --no-startup-id i3lock -e -f -c 1d2021 ; exec --no-startup-id xset dpms force off
+bindsym $mod+x			exec --no-startup-id i3lock -e -f -c 1d2021 ; exec --no-startup-id systemctl suspend
 bindsym $mod+Shift+x		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 
 bindsym $mod+c			exec --no-startup-id cabl
@@ -287,7 +289,7 @@ bindsym $mod+Shift+bracketright exec --no-startup-id lmc forward 120
 # For screenshots and recording
 bindsym Print 			exec --no-startup-id maim pic-full-"$(date '+%y%m%d-%H%M-%S').png"
 bindsym Shift+Print 		exec --no-startup-id maimpick
-bindsym $mod+Print		exec --no-startup-id dmenurecord
+bindsym Mod4+Print		exec --no-startup-id dmenurecord
 bindsym $mod+Scroll_Lock	exec --no-startup-id "killall screenkey || screenkey"
 bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec --no-startup-id xset dpms force off

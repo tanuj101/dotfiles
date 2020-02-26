@@ -1,118 +1,68 @@
-map leader =","
-syntax enable  " enable syntax processing
-set tabstop=2  " number of spaces per tab
-set softtabstop=2  " number of spaces in tab when editing
-set shiftwidth=2
-set expandtab
-set autoindent
-set smartindent
-set cindent
-set showcmd		" show comand in bottom bar
-set nocompatible     " be iMproved, required
-filetype off      " required
-set cursorline	" highlight current line
-filetype indent on " load indent files
-set wildmenu    " visual autocomplete for command menu
-set lazyredraw          " redraw only when we need to.
-set showmatch           " highlight matching [{()}]
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
-set foldenable          " enable folding
-set path+=**
-set nu rnu
-let g:closetag_filenames = '*.html,*.vue'
-nnoremap <space> :nohlsearch<CR>
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-" move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-nnoremap $ <nop>
-nnoremap ^ <nop>
-nnoremap gV `[v`]
-
-if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ~/.config/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
-endif
-
-call plug#begin('~/.config/nvim/plugged')
-Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/goyo.vim'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'jreybert/vimagit'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'vimwiki/vimwiki'
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-commentary'
-Plug 'jiangmiao/auto-pairs'
-Plug 'posva/vim-vue'
-Plug 'alvan/vim-closetag'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'sheerun/vim-polyglot'
-call plug#end()
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-set bg=dark
-set go=a
+" Basic config
+syntax on
+set nu
+filetype plugin indent on
 set mouse=a
-set ttymouse=sgr
-set nohlsearch
-set clipboard=unnamedplus
+set tabstop=4
+set shiftwidth=4
+set path+=**
 
-" Some basics:
-	nnoremap c "_c
-	set nocompatible
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number
-" Enable autocompletion:
-	set wildmode=longest,list,full
+" netrw config
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+let g:netrw_browse_split=3
 
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
-	set splitbelow splitright
 
-" Nerd tree
-	map <C-b> :NERDTreeToggle<CR>
-  map <C-p> :GFiles<CR>
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" coc.nvim Configs
+set expandtab
+set cmdheight=2
+set shortmess+=c
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-" Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
+" Plugins
+call plug#begin()
+Plug 'davidhalter/jedi-vim'
+Plug 'preservim/nerdtree'
+Plug 'w0rp/ale' 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
-" Replace all is aliased to S.
-	nnoremap S :%s//g<Left><Left>
+" Ale
+let g:ale_linters = {'python':['flake8']}
+let g:ale_fixers = {'*':[], 'python': ['black', 'isort'],'javascript':['eslint']}
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
 
-" Resize panes when host is resized
-autocmd VimResized  *  wincmd =
+" Functions
+function GFilesFallback()
+  let output = system('git rev-parse --show-toplevel') " Is there a faster way?
+  let prefix = get(g:, 'fzf_command_prefix', '')
+  if v:shell_error == 0
+    exec "normal :" . prefix . "GFiles\<CR>"
+  else
+    exec "normal :" . prefix . "Files\<CR>"
+  endif
+  return 0
+endfunction
 
-let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+" Key bindings
+nnoremap <C-b> :NERDTreeToggle <CR>
+nnoremap <C-p> :call GFilesFallback() <CR>
+nnoremap <space> :nohlsearch <CR>
+nnoremap <C-j> :tabprevious<CR>
+nnoremap <C-k> :tabnext<CR>
 
-  " FZF shortcut
-  
-  colorscheme dracula
-  " New configs
-  set ttyfast
-  set ttimeout
-  set ttimeoutlen=50
-  set backspace=indent,eol,start
-  set showcmd
-  set wildmenu
-  set wildmode=longest:full,full
-  set hidden
-  set laststatus=2
-  set splitright
-  let NERDTreeQuitOnOpen=1
-" FZF Configs
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }

@@ -83,7 +83,7 @@ bindsym $mod+Shift+Escape 	exec --no-startup-id prompt "Exit i3?" "i3-msg exit"
 bindsym $mod+Shift+BackSpace	exec --no-startup-id prompt "Reboot computer?" "$reboot"
 exec --no-startup-id ~/mkdbus.sh
 
-#bindsym $mod+grave		exec --no-startup-id dmenuunicode
+bindsym $mod+grave		exec --no-startup-id dmenuunicode
 ##bindsym $mod+asciitilde
 
 #STOP/HIDE EVERYTHING:
@@ -98,7 +98,7 @@ bindsym $mod+q			[con_id="__focused__" instance="^(?!dropdown_).*$"] kill
 bindsym $mod+Shift+q		[con_id="__focused__" instance="^(?!dropdown_).*$"] exec --no-startup-id kill -9 `xdotool getwindowfocus getwindowpid`
 
 bindsym $mod+w			exec $term -e nmtui
-bindsym $mod+Shift+w		exec --no-startup-id $BROWSER
+bindsym $mod+Shift+w		exec --no-startup-id google-chrome-stable
 
 bindsym $mod+e			exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
@@ -107,7 +107,7 @@ bindsym $mod+r 			exec $term -e $FILE
 bindsym $mod+Shift+r		exec --no-startup-id winresize
 
 bindsym $mod+t			split toggle
-bindsym $mod+Shift+t		gaps inner current set 10; gaps outer current set 00
+bindsym $mod+Shift+t exec	thunar	
 
 bindsym $mod+y			exec $term -e calcurse -D ~/.config/calcurse
 bindsym $mod+Shift+y		exec --no-startup-id i3resize left
@@ -382,4 +382,5 @@ exec_always --no-startup-id ~/.bash_profile
 client.focused_inactive #000000 #000000 #000000 #000000
 client.focused #000 #000 #000 #ffffff
 client.unfocused        #000000 #000000 #000000 #000000
+exec --no-startup-id feh --bg-fill ~/.config/wallpaper_current.jpg
 
